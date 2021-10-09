@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script to launch bubblewrapped parsecd (from package https://aur.archlinux.org/packages/parsec-bin/)
+# Launch bubblewrapped Parsec from package https://aur.archlinux.org/packages/parsec-bin/
 
 exec bwrap \
 --unshare-all \

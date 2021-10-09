@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script to launch bubblewrapped discord (from package https://aur.archlinux.org/packages/discord_arch_electron/)
+# Launch bubblewrapped Discord from package https://aur.archlinux.org/packages/discord_arch_electron/
 
 exec bwrap \
 --unshare-all \

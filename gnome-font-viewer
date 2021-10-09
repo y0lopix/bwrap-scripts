@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script to launch bubblewrapped gnome-font-viewer (from # Script to launch bubblewrapped telegram-desktop (from https://archlinux.org/packages/community/x86_64/telegram-desktop/)
+# Launch bubblewrapped Gnome Fonts
 
 exec bwrap \
 --ro-bind /usr/bin/gnome-font-viewer /usr/bin/gnome-font-viewer \

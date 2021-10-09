@@ -1,5 +1,5 @@
 #!/bin/sh
-# Script to launch bubblewrapped standardnotes-desktop (from package https://aur.archlinux.org/packages/standardnotes-desktop/)
+# Launch bubblewrapped Standard Notes from package https://aur.archlinux.org/packages/standardnotes-desktop/
 
 exec bwrap \
 --unshare-all \
