@@ -1,0 +1,17 @@
+#!/bin/sh
+# Script to launch bubblewrapped telegram-desktop (from https://archlinux.org/packages/community/x86_64/telegram-desktop/)
+
+exec bwrap \
+--unshare-all \
+--share-net \
+--new-session \
+--ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+--ro-bind /usr/bin/telegram-desktop /usr/bin/telegram-desktop \
+--ro-bind /usr/lib /usr/lib \
+--ro-bind /usr/share/X11/xkb /usr/share/X11/xkb \
+--ro-bind /usr/share/fonts /usr/share/fonts \
+--ro-bind /usr/share/icons /usr/share/icons \
+--bind /run/user/$UID /run/user/$UID \
+--bind ~/.local/share/TelegramDesktop ~/.local/share/TelegramDesktop \
+--bind "$(xdg-user-dir DOWNLOAD)/Telegram" "/home/$USER/Downloads/Telegram Desktop" \
+/usr/bin/telegram-desktop

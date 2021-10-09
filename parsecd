@@ -1,0 +1,18 @@
+#!/bin/sh
+# Script to launch bubblewrapped parsecd (from package https://aur.archlinux.org/packages/parsec-bin/)
+
+exec bwrap \
+--unshare-all \
+--share-net \
+--new-session \
+--ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+--ro-bind /usr/bin/parsecd /usr/bin/parsecd \
+--ro-bind /usr/lib /usr/lib \
+--ro-bind /dev/dri /dev/dri \
+--ro-bind /sys/devices /sys/devices \
+--ro-bind /sys/dev/char /sys/dev/char \
+--ro-bind /usr/share/X11/locale /usr/share/X11/locale \
+--bind ~/Applications/Parsec/.parsec ~/.parsec \
+--ro-bind /etc /etc \
+--ro-bind /run/systemd/resolve /run/systemd/resolve \
+/usr/bin/parsecd

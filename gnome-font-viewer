@@ -1,0 +1,21 @@
+#!/bin/sh
+# Script to launch bubblewrapped gnome-font-viewer (from # Script to launch bubblewrapped telegram-desktop (from https://archlinux.org/packages/community/x86_64/telegram-desktop/)
+
+exec bwrap \
+--ro-bind /usr/bin/gnome-font-viewer /usr/bin/gnome-font-viewer \
+--ro-bind /usr/lib /usr/lib \
+--ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+--ro-bind /run/user/1000/wayland-1 /run/user/1000/wayland-1 \
+--ro-bind /usr/share/X11/xkb /usr/share/X11/xkb \
+--ro-bind /usr/share/icons /usr/share/icons \
+--ro-bind /usr/share/mime /usr/share/mime \
+--ro-bind /usr/share/fonts /usr/share/fonts \
+--ro-bind /usr/share/gtk-3.0/settings.ini /usr/share/gtk-3.0/settings.ini \
+--ro-bind /usr/share/locale /usr/share/locale \
+--ro-bind /usr/share/glib-2.0 /usr/share/glib-2.0 \
+--ro-bind /usr/share/themes /usr/share/themes \
+--ro-bind ~/.config/dconf/user ~/.config/dconf/user \
+--bind ~/.cache/thumbnails ~/.cache/thumbnails \
+--unshare-all \
+--new-session \
+/usr/bin/gnome-font-viewer

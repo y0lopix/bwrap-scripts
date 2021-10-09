@@ -1,0 +1,24 @@
+#!/bin/sh
+# Script to launch bubblewrapped standardnotes-desktop (from package https://aur.archlinux.org/packages/standardnotes-desktop/)
+
+exec bwrap \
+--unshare-all \
+--share-net \
+--new-session \
+--ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+--ro-bind /usr/bin /usr/bin \
+--ro-bind /usr/lib /usr/lib \
+--ro-bind /usr/share /usr/share \
+--ro-bind /opt/standardnotes-desktop /opt/standardnotes-desktop \
+--ro-bind /sys/devices /sys/devices \
+--ro-bind /sys/dev/char /sys/dev/char \
+--proc /proc \
+--bind ~/Applications/Standard-Notes ~/ \
+--ro-bind ~/.config/electron13-flags.conf ~/.config/electron13-flags.conf \
+--ro-bind ~/.icons/default/index.theme ~/.icons/default/index.theme \
+--ro-bind /run/user/$UID/wayland-1 /run/user/$UID/wayland-1 \
+--dev-bind /dev /dev \
+--tmpfs /tmp \
+--bind ~/.cache/fontconfig ~/.cache/fontconfig \
+--ro-bind ~/.config/Electron/Dictionaries ~/.config/Electron/Dictionaries \
+/usr/bin/standardnotes-desktop
