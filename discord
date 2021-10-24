@@ -24,13 +24,12 @@ exec bwrap \
 --ro-bind /run/user/$UID/bus /run/user/$UID/bus \
 --ro-bind /run/dbus/system_bus_socket /run/dbus/system_bus_socket \
 --bind /run/user/$UID/dconf/user /run/user/$UID/dconf/user \
---bind ~/Applications/Discord ~/ \
+--bind ~/Applications/Discord/.config/discord ~/.config/discord \
 --ro-bind ~/.config/electron-flags.conf ~/.config/electron-flags.conf \
 --ro-bind ~/.icons/default/index.theme ~/.icons/default/index.theme \
 --tmpfs ~/.cache \
 --tmpfs ~/.config/chromium \
 --tmpfs ~/.config/pulse \
---tmpfs ~/.config/discord/Cache \
---tmpfs ~/.config/discord/Code\ Cache \
 --ro-bind /etc /etc \
+--bind ~/Shared ~/Shared \
 /usr/bin/discord
