@@ -16,7 +16,7 @@ exec bwrap \
 --bind ~/Applications/Standard-Notes ~/ \
 --ro-bind ~/.config/electron13-flags.conf ~/.config/electron13-flags.conf \
 --ro-bind ~/.icons/default/index.theme ~/.icons/default/index.theme \
---ro-bind /run/user/$UID/wayland-1 /run/user/$UID/wayland-1 \
+--ro-bind /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY \
 --dev-bind /dev /dev \
 --tmpfs /tmp \
 --bind ~/.cache/fontconfig ~/.cache/fontconfig \

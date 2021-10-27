@@ -5,7 +5,7 @@ exec bwrap \
 --ro-bind /usr/bin/gnome-font-viewer /usr/bin/gnome-font-viewer \
 --ro-bind /usr/lib /usr/lib \
 --ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
---ro-bind /run/user/1000/wayland-1 /run/user/1000/wayland-1 \
+--ro-bind /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY \
 --ro-bind /usr/share/X11/xkb /usr/share/X11/xkb \
 --ro-bind /usr/share/icons /usr/share/icons \
 --ro-bind /usr/share/mime /usr/share/mime \

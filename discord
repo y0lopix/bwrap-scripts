@@ -19,7 +19,7 @@ exec bwrap \
 --dev-bind /dev/dri /dev/dri \
 --bind /tmp /tmp \
 --ro-bind /run/systemd/resolve /run/systemd/resolve \
---ro-bind /run/user/$UID/wayland-1 /run/user/$UID/wayland-1 \
+--ro-bind /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY \
 --ro-bind /run/user/$UID/pulse /run/user/$UID/pulse \
 --ro-bind /run/user/$UID/bus /run/user/$UID/bus \
 --ro-bind /run/dbus/system_bus_socket /run/dbus/system_bus_socket \

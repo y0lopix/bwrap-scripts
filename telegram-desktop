@@ -14,4 +14,5 @@ exec bwrap \
 --bind /run/user/$UID /run/user/$UID \
 --bind ~/.local/share/TelegramDesktop ~/.local/share/TelegramDesktop \
 --bind "$(xdg-user-dir DOWNLOAD)/Telegram" "/home/$USER/Downloads/Telegram Desktop" \
+--bind ~/Shared ~/Shared \
 /usr/bin/telegram-desktop
