@@ -5,8 +5,14 @@ XDG_DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
 exec bwrap \
 --unshare-all \
 --share-net \
+--clearenv \
 --setenv HOME $HOME \
+--setenv QT_QPA_PLATFORM $QT_QPA_PLATFORM \
 --setenv WAYLAND_DISPLAY $WAYLAND_DISPLAY \
+--setenv XDG_RUNTIME_DIR $XDG_RUNTIME_DIR \
+--setenv XCURSOR_SIZE $XCURSOR_SIZE \
+--setenv XCURSOR_THEME $XCURSOR_THEME \
+--setenv DISPLAY $DISPLAY \
 --new-session \
 --ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
 --ro-bind /usr/bin/telegram-desktop /usr/bin/telegram-desktop \
