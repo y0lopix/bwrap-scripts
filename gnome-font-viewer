@@ -1,5 +1,7 @@
 #!/bin/sh
-# Launch bubblewrapped Gnome Fonts
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 
 exec bwrap \
 --ro-bind /usr/bin/gnome-font-viewer /usr/bin/gnome-font-viewer \
@@ -10,11 +12,12 @@ exec bwrap \
 --ro-bind /usr/share/icons /usr/share/icons \
 --ro-bind /usr/share/mime /usr/share/mime \
 --ro-bind /usr/share/fonts /usr/share/fonts \
---ro-bind /usr/share/gtk-3.0/settings.ini /usr/share/gtk-3.0/settings.ini \
 --ro-bind /usr/share/locale /usr/share/locale \
 --ro-bind /usr/share/glib-2.0 /usr/share/glib-2.0 \
 --ro-bind /usr/share/themes /usr/share/themes \
---ro-bind ~/.config/dconf/user ~/.config/dconf/user \
+--ro-bind /etc/fonts /etc/fonts \
+--ro-bind $XDG_CONFIG_HOME/dconf/user $XDG_CONFIG_HOME/dconf/user \
+--ro-bind $XDG_DATA_HOME/fonts $XDG_DATA_HOME/fonts \
 --bind ~/.cache/thumbnails ~/.cache/thumbnails \
 --unshare-all \
 --new-session \
