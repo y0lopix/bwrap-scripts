@@ -4,6 +4,12 @@ XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 
 exec bwrap \
+--unshare-all \
+--clearenv \
+--setenv HOME $HOME \
+--setenv WAYLAND_DISPLAY $WAYLAND_DISPLAY \
+--setenv XDG_RUNTIME_DIR $XDG_RUNTIME_DIR \
+--new-session \
 --ro-bind /usr/bin/gnome-font-viewer /usr/bin/gnome-font-viewer \
 --ro-bind /usr/lib /usr/lib \
 --ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
@@ -16,9 +22,7 @@ exec bwrap \
 --ro-bind /usr/share/glib-2.0 /usr/share/glib-2.0 \
 --ro-bind /usr/share/themes /usr/share/themes \
 --ro-bind /etc/fonts /etc/fonts \
---ro-bind $XDG_CONFIG_HOME/dconf/user $XDG_CONFIG_HOME/dconf/user \
---ro-bind $XDG_DATA_HOME/fonts $XDG_DATA_HOME/fonts \
+--ro-bind $XDG_CONFIG_HOME/dconf/user ~/.config/dconf/user \
+--ro-bind $XDG_DATA_HOME/fonts ~/.local/share/fonts \
 --bind ~/.cache/thumbnails ~/.cache/thumbnails \
---unshare-all \
---new-session \
 /usr/bin/gnome-font-viewer
