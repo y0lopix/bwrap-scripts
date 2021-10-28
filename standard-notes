@@ -1,0 +1,33 @@
+#!/bin/sh
+# Launch bubblewrapped Standard Notes from package https://aur.archlinux.org/packages/standardnotes-bin/
+
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+
+exec bwrap \
+--unshare-all \
+--share-net \
+--clearenv \
+--setenv HOME $HOME \
+--setenv DISPLAY $DISPLAY \
+--new-session \
+--ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
+--ro-bind /bin/sh /bin/sh \
+--ro-bind /usr/lib /usr/lib \
+--ro-bind /usr/bin/standard-notes /usr/bin/standard-notes \
+--ro-bind /opt/standardnotes-bin /opt/standardnotes-bin \
+--ro-bind /sys/devices /sys/devices \
+--ro-bind /sys/dev/char /sys/dev/char \
+--proc /proc \
+--tmpfs /tmp \
+--dev /dev \
+--dev-bind /dev/dri /dev/dri \
+--ro-bind /etc/fonts /etc/fonts \
+--ro-bind /usr/share /usr/share \
+--ro-bind /run/systemd/resolve /run/systemd/resolve \
+--ro-bind /etc /etc \
+--dev-bind /run /run \
+--bind "$HOME/Applications/Standard-Notes" "$HOME" \
+--ro-bind "$HOME/.icons/default/index.theme" "$HOME/.icons/default/index.theme" \
+--bind "$XDG_CACHE_HOME/mesa_shader_cache" "$HOME/.cache/mesa_shader_cache" \
+--bind "$XDG_CACHE_HOME/fontconfig" "$HOME/.cache/fontconfig" \
+/usr/bin/standard-notes
