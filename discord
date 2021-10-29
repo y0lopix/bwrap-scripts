@@ -1,9 +1,17 @@
 #!/bin/sh
 # Launch bubblewrapped Discord from package https://aur.archlinux.org/packages/discord_arch_electron/
 
+XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+
 exec bwrap \
 --unshare-all \
 --share-net \
+--clearenv \
+--setenv HOME $HOME \
+--setenv WAYLAND_DISPLAY $WAYLAND_DISPLAY \
+--setenv XDG_RUNTIME_DIR $XDG_RUNTIME_DIR \
+--setenv DBUS_SESSION_BUS_ADDRESS $DBUS_SESSION_BUS_ADDRESS \
+--setenv DISPLAY $DISPLAY \
 --new-session \
 --ro-bind /lib64/ld-linux-x86-64.so.2 /lib64/ld-linux-x86-64.so.2 \
 --ro-bind /bin/sh /bin/sh \
@@ -19,15 +27,16 @@ exec bwrap \
 --dev-bind /dev/dri /dev/dri \
 --bind /tmp /tmp \
 --ro-bind /run/systemd/resolve /run/systemd/resolve \
---ro-bind /run/user/$UID/$WAYLAND_DISPLAY /run/user/$UID/$WAYLAND_DISPLAY \
---ro-bind /run/user/$UID/pulse /run/user/$UID/pulse \
---ro-bind /run/user/$UID/bus /run/user/$UID/bus \
+--ro-bind "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" \
+--ro-bind "$XDG_RUNTIME_DIR/pulse" "$XDG_RUNTIME_DIR/pulse" \
+--ro-bind "$XDG_RUNTIME_DIR/bus" "$XDG_RUNTIME_DIR/bus" \
 --ro-bind /run/dbus/system_bus_socket /run/dbus/system_bus_socket \
 --bind /run/user/$UID/dconf/user /run/user/$UID/dconf/user \
 --bind ~/Applications/Discord/.config/discord ~/.config/discord \
 --ro-bind ~/.config/electron-flags.conf ~/.config/electron-flags.conf \
 --ro-bind ~/.icons/default/index.theme ~/.icons/default/index.theme \
---tmpfs ~/.cache \
+--bind "$XDG_CACHE_HOME/mesa_shader_cache" "$HOME/.cache/mesa_shader_cache" \
+--bind "$XDG_CACHE_HOME/fontconfig" "$HOME/.cache/fontconfig" \
 --tmpfs ~/.config/chromium \
 --tmpfs ~/.config/pulse \
 --ro-bind /etc /etc \
