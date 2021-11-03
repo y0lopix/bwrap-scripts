@@ -20,6 +20,7 @@ exec bwrap \
 --proc /proc \
 --dev /dev \
 --tmpfs /tmp \
+--ro-bind "$XDG_RUNTIME_DIR/bus" "$XDG_RUNTIME_DIR/bus" \
 --ro-bind "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" "$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" \
 --ro-bind "$XDG_RUNTIME_DIR/pulse" "$XDG_RUNTIME_DIR/pulse" \
 --bind "$XDG_RUNTIME_DIR/dconf/user" "$XDG_RUNTIME_DIR/dconf/user" \
